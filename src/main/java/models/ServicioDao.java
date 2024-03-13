@@ -38,9 +38,9 @@ public class ServicioDao implements DaoInterface<Servicio> {
             rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 newServicio = new Servicio(
-                    rs.getString("desc"),
-                    rs.getString("he"),
-                    rs.getString("hs"),
+                    rs.getString("descripcion"),
+                    rs.getString("horaEntrada"),
+                    rs.getString("horaSalida"),
                     rs.getDate("fecha")
                 );
                 newServicio.setId(rs.getInt("id"));
@@ -64,9 +64,9 @@ public class ServicioDao implements DaoInterface<Servicio> {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Servicio servicio = new Servicio(
-                    rs.getString("desc"),
-                    rs.getString("he"),
-                    rs.getString("hs"),
+                    rs.getString("descripcion"),
+                    rs.getString("horaEntrada"),
+                    rs.getString("horaSalida"),
                     rs.getDate("fecha")
                 );
                 servicio.setId(rs.getInt("id"));
@@ -80,7 +80,7 @@ public class ServicioDao implements DaoInterface<Servicio> {
 
     @Override
     public void save(Servicio servicio) {
-        String sql = "INSERT INTO servicios (desc, he, hs, fecha) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO servicios (descripcion, horaEntrada, horaSalida, fecha) VALUES (?, ?, ?, ?)";
         try {
             preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, servicio.getDesc());
@@ -107,14 +107,14 @@ public class ServicioDao implements DaoInterface<Servicio> {
             return;
         }
         
-        String sql = "UPDATE servicios SET desc = ?, he = ?, hs = ?, fecha = ? WHERE id = ?";
+        String sql = "UPDATE servicios SET descripcion = ?, horaEntrada = ?, horaSalida = ?, fecha = ? WHERE id = ?";
         try {
             preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, params[0]); // nueva descripción
-            preparedStatement.setTime(2, Time.valueOf(params[1])); // nueva hora de inicio
-            preparedStatement.setTime(3, Time.valueOf(params[2])); // nueva hora de fin
-            preparedStatement.setDate(4, new java.sql.Date(parseDate(params[3]).getTime())); // nueva fecha
-            preparedStatement.setInt(5, servicio.getId()); // id del servicio a actualizar
+            preparedStatement.setString(1, params[0]);
+            preparedStatement.setTime(2, Time.valueOf(params[1]));
+            preparedStatement.setTime(3, Time.valueOf(params[2]));
+            preparedStatement.setDate(4, new java.sql.Date(parseDate(params[3]).getTime()));
+            preparedStatement.setInt(5, servicio.getId());
             
             int rowsAffected = preparedStatement.executeUpdate();
 

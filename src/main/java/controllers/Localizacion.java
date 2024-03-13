@@ -9,8 +9,13 @@ public class Localizacion {
 
     public Localizacion() {}
     
-    public Localizacion(String direccion, String cp, String localidad, String provincia) {
-        this.direccion = direccion;
+    public Localizacion(int id) {
+    	this.id = id;
+    }
+    
+    public Localizacion(int id, String direccion, String cp, String localidad, String provincia) {
+    	this(id);
+    	this.direccion = direccion;
         this.cp = cp;
         this.localidad = localidad;
         this.provincia = provincia;

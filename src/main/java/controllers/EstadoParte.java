@@ -1,4 +1,5 @@
 package controllers;
+
 public enum EstadoParte {
     EN_PROCESO("En proceso"),
     TERMINADO("Terminado");

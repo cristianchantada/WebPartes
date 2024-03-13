@@ -8,8 +8,13 @@ public class Vehiculo implements Serializable {
     private String marca;
     private String modelo;
     
+    public Vehiculo(String matricula) {
+    	this.matricula = matricula;
+    }
+    
+    
     public Vehiculo(String matricula, String marca, String modelo) {
-        this.matricula = matricula;
+        this(matricula);
         this.marca = marca;
         this.modelo = modelo;
     }

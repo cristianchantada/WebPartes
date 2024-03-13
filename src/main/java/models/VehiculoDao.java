@@ -24,6 +24,31 @@ public class VehiculoDao implements DaoInterface<Vehiculo> {
             System.out.println("Failed to initialize VehiculoDao: " + e.getMessage());
         }
     }
+    
+    @Override
+    public Vehiculo get(Vehiculo vehiculo) {
+        Vehiculo newVehiculo = null;
+        String sql = "SELECT * FROM vehiculos WHERE matricula = ?";
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, vehiculo.getMatricula());
+            rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newVehiculo = new Vehiculo(
+                    rs.getString("matricula"),
+                    rs.getString("marca"),
+                    rs.getString("modelo")
+                );
+            } else {
+                System.out.println("No se encontró ningún vehículo con la matrícula proporcionada.");
+            }
+        } catch (SQLException e) {
+            System.out.println("SQL exception in VehiculoDao.get: " + e.getMessage());
+        } finally {
+            closeConnection();
+        }
+        return newVehiculo;
+    }
 
     @Override
     public List<Vehiculo> getAll() {
@@ -112,31 +137,6 @@ public class VehiculoDao implements DaoInterface<Vehiculo> {
         } finally {
             closeConnection();
         }
-    }
-
-    @Override
-    public Vehiculo get(Vehiculo vehiculo) {
-        Vehiculo newVehiculo = null;
-        String sql = "SELECT * FROM vehiculos WHERE matricula = ?";
-        try {
-            preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, vehiculo.getMatricula());
-            rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                newVehiculo = new Vehiculo(
-                    rs.getString("matricula"),
-                    rs.getString("marca"),
-                    rs.getString("modelo")
-                );
-            } else {
-                System.out.println("No se encontró ningún vehículo con la matrícula proporcionada.");
-            }
-        } catch (SQLException e) {
-            System.out.println("SQL exception in VehiculoDao.get: " + e.getMessage());
-        } finally {
-            closeConnection();
-        }
-        return newVehiculo;
     }
 
     private void closeConnection() {

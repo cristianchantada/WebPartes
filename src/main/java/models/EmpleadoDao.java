@@ -28,7 +28,7 @@ public class EmpleadoDao implements DaoInterface<Empleado> {
     @Override
     public Empleado get(Empleado empleado) {
         Empleado newEmpleado = null;
-        String sql = "SELECT * FROM empleados WHERE nif = ?";
+        String sql = "SELECT * FROM empleado WHERE nif = ?";
         try {
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, empleado.getNif());
@@ -53,7 +53,7 @@ public class EmpleadoDao implements DaoInterface<Empleado> {
     @Override
     public List<Empleado> getAll() {
         List<Empleado> listaEmpleados = new ArrayList<>();
-        String sql = "SELECT * FROM empleados";
+        String sql = "SELECT * FROM empleado";
         try {
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -75,7 +75,7 @@ public class EmpleadoDao implements DaoInterface<Empleado> {
 
     @Override
     public void save(Empleado empleado) {
-        String sql = "INSERT INTO empleados (nif, nombre, telefono, correo, codigo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO empleado (nif, nombre, telefono, correo, codigo) VALUES (?, ?, ?, ?, ?)";
         try {
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, empleado.getNif());
@@ -98,7 +98,7 @@ public class EmpleadoDao implements DaoInterface<Empleado> {
             return;
         }
         
-        String sql = "UPDATE empleados SET nombre = ?, telefono = ?, correo = ?, codigo = ? WHERE nif = ?";
+        String sql = "UPDATE empleado SET nombre = ?, telefono = ?, correo = ?, codigo = ? WHERE nif = ?";
         try {
              preparedStatement = conn.prepareStatement(sql);
              preparedStatement.setString(1, params[0]); // nuevo nombre
@@ -115,7 +115,7 @@ public class EmpleadoDao implements DaoInterface<Empleado> {
 
     @Override
     public void delete(Empleado empleado) {
-        String sql = "DELETE FROM empleados WHERE nif = ?";
+        String sql = "DELETE FROM empleado WHERE nif = ?";
         try {
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, empleado.getNif());

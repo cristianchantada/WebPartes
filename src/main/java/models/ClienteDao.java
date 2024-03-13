@@ -52,7 +52,7 @@ public class ClienteDao implements DaoInterface<Cliente> {
 	@Override
 	public Cliente get(Cliente cliente) {
 		String clientNif = cliente.getNif();
-		Cliente newCliente = new Cliente();
+		Cliente newCliente = new Cliente(clientNif);
 		sql = "SELECT * FROM clientes WHERE nif = '" + clientNif + "'";
 		try {
 			this.rs = stmt.executeQuery(sql);
@@ -121,7 +121,6 @@ public class ClienteDao implements DaoInterface<Cliente> {
 
 	@Override
 	public void update(Cliente cliente, String[] params) {
-	    // Verificar si se proporcionan parámetros válidos
 	    if (params.length != 4) {
 	        System.out.println("Número incorrecto de parámetros para la actualización del cliente");
 	        return;
@@ -130,11 +129,11 @@ public class ClienteDao implements DaoInterface<Cliente> {
 	    String sql = "UPDATE clientes SET nombre = ?, email = ?, telefono = ?, nif = ? WHERE nif = ?";
 	    try {
 	         preparedStatement = conn.prepareStatement(sql);
-	         preparedStatement.setString(1, params[0]); // nuevo nombre
-	         preparedStatement.setString(2, params[1]); // nuevo email
-	         preparedStatement.setString(3, params[2]); // nuevo telefono
-	         preparedStatement.setString(4, params[3]); // nuevo nif
-	         preparedStatement.setString(5, cliente.getNif()); // nif del cliente a actualizar
+	         preparedStatement.setString(1, params[0]);
+	         preparedStatement.setString(2, params[1]);
+	         preparedStatement.setString(3, params[2]);
+	         preparedStatement.setString(4, params[3]);
+	         preparedStatement.setString(5, cliente.getNif());
 	        
 	        rowsAffected = preparedStatement.executeUpdate();
 

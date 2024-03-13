@@ -36,7 +36,8 @@ public class LocalizacionDao implements DaoInterface<Localizacion> {
             rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 newLocalizacion = new Localizacion(
-                    rs.getString("direccion"),
+                    rs.getInt("id"),
+                	rs.getString("direccion"),
                     rs.getString("cp"),
                     rs.getString("localidad"),
                     rs.getString("provincia")
@@ -61,6 +62,7 @@ public class LocalizacionDao implements DaoInterface<Localizacion> {
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Localizacion localizacion = new Localizacion(
+                	rs.getInt("id"),
                     rs.getString("direccion"),
                     rs.getString("cp"),
                     rs.getString("localidad"),

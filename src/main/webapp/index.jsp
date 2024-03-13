@@ -14,6 +14,11 @@
         <li><a href="clientes.jsp">Clientes</a></li>
         <li><a href="empleados.jsp">Empleados</a></li>
         <li><a href="vehiculos.jsp">Vehículos</a></li>
+         <li><a href="localizaciones.jsp">Localizaciones</a></li>
+        <li><a href="materiales.jsp">Materiales</a></li>
+        <li><a href="servicios.jsp">Servicios</a></li>
+        <li><a href="partes.jsp">Partes</a></li>
+
     </ul>
 </body>
 </html>

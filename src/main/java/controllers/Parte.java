@@ -6,6 +6,7 @@ public class Parte implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
 	private String descripcion;
     private Date fecha;
     private String observaciones;
@@ -16,39 +17,23 @@ public class Parte implements Serializable {
     private Servicio servicio; //opcional
     private Material material; //opcional
     private Localizacion localizacion;
+    
+    private String materialDescription;
+    private String servicioDescription;
 
     public Parte() {}
+    
+    public Parte(int id) {
+    	this.id = id;
+    }
 
-    public Parte(Date fecha, Cliente cliente, Empleado empleado, Vehiculo vehiculo, Servicio servicio) {
-        this();
+    public Parte(int id, Date fecha, Cliente cliente, Empleado empleado, Vehiculo vehiculo, Servicio servicio) {
+        this(id);
         this.fecha = fecha;
         this.cliente = cliente;
         this.empleado = empleado;
         this.vehiculo = vehiculo;
         this.servicio = servicio;
-    }
-
-    public Parte(Date fecha, Cliente cliente, Empleado empleado, Vehiculo vehiculo, Servicio servicio, Material material){
-        this(fecha, cliente, empleado, vehiculo, servicio);
-        this.material = material;
-    }
-    public Parte(Date fecha, Cliente cliente, Empleado empleado, Vehiculo vehiculo, Servicio servicio, Localizacion localizacion){
-        this(fecha, cliente, empleado, vehiculo, servicio);
-        this.localizacion = localizacion;
-    }
-
-    public Parte(Date fecha, Cliente cliente, Empleado empleado, Vehiculo vehiculo, Servicio servicio, Material material, Localizacion localizacion){
-        this(fecha, cliente, empleado, vehiculo, servicio, material);
-        this.localizacion = localizacion;
-    }
-
-
-    public EstadoParte getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoParte estado) {
-        this.estado = estado;
     }
 
     @Override
@@ -63,4 +48,112 @@ public class Parte implements Serializable {
                 "\t\tMaterial:\n\t\t\t" + material + "\n" +
                 "\t\tlocalizacion\t\t\t: " + localizacion + "\n\n";
     }
+    
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	public EstadoParte getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoParte estado) {
+		this.estado = estado;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
+
+	public Localizacion getLocalizacion() {
+		return localizacion;
+	}
+
+	public void setLocalizacion(Localizacion localizacion) {
+		this.localizacion = localizacion;
+	}
+
+	public String getMaterialDescription() {
+		return materialDescription;
+	}
+
+	public void setMaterialDescription(String materialDescription) {
+		this.materialDescription = materialDescription;
+	}
+
+	public String getServicioDescription() {
+		return servicioDescription;
+	}
+
+	public void setServicioDescription(String servicioDescription) {
+		this.servicioDescription = servicioDescription;
+	}
+    
+	
+    
+    
 }
